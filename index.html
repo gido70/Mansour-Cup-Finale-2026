@@ -15,18 +15,18 @@
 
   <style>
     .home-wrap{
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 18px 16px 40px;
+      max-width:1280px;
+      margin:0 auto;
+      padding:18px 16px 40px;
     }
 
     .section-card{
-      background: linear-gradient(180deg, rgba(12,30,58,.95), rgba(8,23,44,.95));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      box-shadow: 0 12px 34px rgba(0,0,0,.24);
-      overflow: hidden;
-      margin-bottom: 24px;
+      background:linear-gradient(180deg, rgba(12,30,58,.96), rgba(8,23,44,.96));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      box-shadow:0 12px 34px rgba(0,0,0,.24);
+      overflow:hidden;
+      margin-bottom:24px;
     }
 
     .section-head{
@@ -36,12 +36,12 @@
       gap:16px;
       padding:18px 22px;
       border-bottom:1px solid rgba(255,255,255,.08);
-      background: linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      background:linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
     }
 
     .section-head h2{
       margin:0;
-      font-size:1.9rem;
+      font-size:2rem;
       color:#fff;
     }
 
@@ -50,66 +50,71 @@
       font-size:.98rem;
     }
 
-    .news-grid{
-      display:grid;
-      grid-template-columns: 1.4fr .9fr;
-      gap:18px;
+    .news-box{
       padding:20px;
+    }
+
+    .news-accordion{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .news-accordion-header{
+      width:100%;
+      background:linear-gradient(135deg,#1e4f97,#0d2f5d);
+      color:#fff;
+      border:none;
+      padding:20px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      font-size:1.55rem;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .news-accordion-header span{
+      font-size:1rem;
+      font-weight:600;
+      color:rgba(255,255,255,.86);
+    }
+
+    .news-accordion-body{
+      display:block;
+      padding:18px;
     }
 
     .news-list{
       display:grid;
-      gap:16px;
+      gap:14px;
     }
 
-    .news-item{
+    .news-row{
       display:grid;
-      grid-template-columns: 120px 1fr;
-      gap:16px;
-      align-items:stretch;
+      grid-template-columns: 1fr auto;
+      gap:14px;
+      align-items:center;
       padding:16px;
-      border-radius:18px;
-      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.06);
     }
 
-    .news-badge{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100%;
-      border-radius:14px;
-      font-weight:800;
-      font-size:1.6rem;
+    .news-info h3{
+      margin:0 0 6px;
+      font-size:1.18rem;
       color:#fff;
-      background: linear-gradient(135deg, #1d5fa8, #0e2b52);
-      border:1px solid rgba(255,255,255,.08);
+      line-height:1.5;
     }
 
-    .news-content h3{
-      margin:0 0 8px;
-      color:#fff;
-      font-size:1.35rem;
-      line-height:1.4;
-    }
-
-    .news-meta{
-      color:rgba(255,255,255,.7);
-      font-size:.95rem;
-      margin-bottom:8px;
-    }
-
-    .news-text{
-      color:rgba(255,255,255,.86);
+    .news-info p{
+      margin:0;
+      color:rgba(255,255,255,.72);
       line-height:1.8;
-      font-size:1rem;
-      margin-bottom:12px;
-    }
-
-    .btn-row-home{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+      font-size:.96rem;
     }
 
     .btn-home{
@@ -118,78 +123,19 @@
       justify-content:center;
       text-decoration:none;
       color:#fff;
-      background: linear-gradient(180deg, #123b70, #0c2c56);
+      background:linear-gradient(180deg, #123b70, #0c2c56);
       border:1px solid rgba(255,255,255,.15);
       border-radius:12px;
       padding:10px 16px;
       font-weight:700;
       transition:.2s ease;
+      white-space:nowrap;
     }
 
     .btn-home:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.08);
+      transform:translateY(-1px);
+      filter:brightness(1.08);
     }
-
-    .quick-panel{
-      display:grid;
-      gap:14px;
-    }
-
-    .quick-box{
-      padding:18px;
-      border-radius:18px;
-      background: rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-    }
-
-    .quick-box h3{
-      margin:0 0 14px;
-      color:#fff;
-      font-size:1.35rem;
-    }
-
-    .quick-links{
-      display:grid;
-      gap:10px;
-    }
-
-    .quick-link{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      text-decoration:none;
-      color:#fff;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:700;
-    }
-
-    .quick-link:hover{
-      background: rgba(255,255,255,.08);
-    }
-
-    .quick-icon{
-      width:34px;
-      height:34px;
-      border-radius:50%;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      color:#fff;
-      flex:0 0 34px;
-    }
-
-    .i-a{ background: linear-gradient(135deg,#d55a5a,#9d2d2d); }
-    .i-b{ background: linear-gradient(135deg,#54a0e6,#2268a8); }
-    .i-c{ background: linear-gradient(135deg,#d7b25b,#9c7a2a); }
-    .i-d{ background: linear-gradient(135deg,#6fc06a,#337e30); }
-    .i-k{ background: linear-gradient(135deg,#8a6fd5,#52359b); }
-    .i-w{ background: linear-gradient(135deg,#d9b35b,#8f6a15); }
 
     .videos-grid{
       display:grid;
@@ -199,22 +145,37 @@
     }
 
     .video-card{
-      border-radius:18px;
+      border-radius:20px;
       overflow:hidden;
-      background: rgba(255,255,255,.03);
+      background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.06);
+      box-shadow:0 8px 26px rgba(0,0,0,.18);
     }
 
     .video-thumb{
-      aspect-ratio: 16 / 9;
+      position:relative;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(39,105,180,.35), rgba(8,30,59,.7));
+    }
+
+    .video-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .video-play{
+      position:absolute;
+      inset:0;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:
-        radial-gradient(circle at center, rgba(255,255,255,.12), transparent 35%),
-        linear-gradient(135deg, rgba(39,105,180,.35), rgba(8,30,59,.65));
-      color:#fff;
+      background:radial-gradient(circle, rgba(255,255,255,.12), transparent 30%);
       font-size:3rem;
+      color:#fff;
+      text-shadow:0 4px 18px rgba(0,0,0,.45);
     }
 
     .video-body{
@@ -224,14 +185,16 @@
     .video-body h3{
       margin:0 0 8px;
       color:#fff;
-      font-size:1.25rem;
+      font-size:1.18rem;
       line-height:1.5;
+      min-height:3.2em;
     }
 
     .video-body p{
       margin:0 0 14px;
       color:rgba(255,255,255,.78);
       line-height:1.8;
+      min-height:3.6em;
     }
 
     .gallery-grid{
@@ -242,96 +205,134 @@
     }
 
     .gallery-card{
-      min-height:180px;
-      border-radius:18px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        radial-gradient(circle at top right, rgba(215,171,63,.18), transparent 30%);
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.06);
-      display:flex;
-      flex-direction:column;
-      justify-content:end;
-      padding:18px;
+      box-shadow:0 8px 26px rgba(0,0,0,.18);
     }
 
-    .gallery-card h3{
+    .gallery-card img{
+      width:100%;
+      aspect-ratio:16/10;
+      object-fit:cover;
+      display:block;
+      background:linear-gradient(135deg, rgba(39,105,180,.35), rgba(8,30,59,.7));
+    }
+
+    .gallery-body{
+      padding:14px 16px;
+    }
+
+    .gallery-body h3{
       margin:0 0 6px;
       color:#fff;
-      font-size:1.2rem;
+      font-size:1.12rem;
     }
 
-    .gallery-card p{
+    .gallery-body p{
       margin:0;
-      color:rgba(255,255,255,.75);
+      color:rgba(255,255,255,.72);
       line-height:1.7;
+      font-size:.95rem;
     }
 
     .social-wrap{
       display:flex;
       justify-content:center;
+      align-items:center;
       gap:18px;
       flex-wrap:wrap;
-      padding:22px;
+      padding:24px 20px 10px;
     }
 
     .social-icon-link{
-      width:74px;
-      height:74px;
-      border-radius:20px;
+      width:82px;
+      height:82px;
+      border-radius:22px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       text-decoration:none;
       color:#fff;
-      font-size:2rem;
-      border:1px solid rgba(255,255,255,.14);
+      font-size:2.2rem;
+      border:1px solid rgba(255,255,255,.16);
       box-shadow:0 10px 26px rgba(0,0,0,.22);
       transition:.2s ease;
     }
 
     .social-icon-link:hover{
-      transform: translateY(-2px) scale(1.03);
-      filter: brightness(1.08);
+      transform:translateY(-2px) scale(1.04);
+      filter:brightness(1.06);
     }
 
     .insta{
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
     }
 
     .youtube{
-      background: linear-gradient(135deg, #ff1f1f, #b30000);
+      background:linear-gradient(135deg, #ff2e2e, #b30000);
     }
 
     .social-note{
       text-align:center;
       color:rgba(255,255,255,.78);
-      padding:0 20px 22px;
+      padding:0 20px 24px;
       font-size:1rem;
     }
 
-    @media (max-width: 1100px){
-      .news-grid{
-        grid-template-columns: 1fr;
-      }
+    @media (max-width:1100px){
       .videos-grid,
       .gallery-grid{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    @media (max-width: 760px){
-      .news-item{
-        grid-template-columns: 1fr;
+    @media (max-width:760px){
+      .section-head{
+        padding:16px;
       }
+
+      .section-head h2{
+        font-size:1.55rem;
+      }
+
+      .section-sub{
+        display:none;
+      }
+
+      .home-wrap{
+        padding:12px 10px 28px;
+      }
+
+      .news-accordion-header{
+        font-size:1.25rem;
+        padding:16px;
+      }
+
+      .news-accordion-header span{
+        font-size:.9rem;
+      }
+
+      .news-row{
+        grid-template-columns:1fr;
+        align-items:start;
+      }
+
       .videos-grid,
       .gallery-grid{
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
-      .section-head h2{
-        font-size:1.5rem;
+
+      .video-body h3,
+      .video-body p{
+        min-height:auto;
       }
-      .home-wrap{
-        padding:14px 10px 28px;
+
+      .social-icon-link{
+        width:74px;
+        height:74px;
+        border-radius:20px;
       }
     }
   </style>
@@ -385,64 +386,41 @@
       <div class="section-sub">تغطية مرتبة زمنيًا من الأقدم إلى الأحدث</div>
     </div>
 
-    <div class="news-grid">
-      <div class="news-list">
-        <article class="news-item">
-          <div class="news-badge">1</div>
-          <div class="news-content">
-            <h3>بداية النسخة 13 من بطولة كأس منصور بن زايد لكرة القدم</h3>
-            <div class="news-meta">النشرة الأولى • من الأقدم إلى الأحدث</div>
-            <div class="news-text">
-              هذا القسم سيكون مخصصًا لنشرات البطولة الرسمية بصياغة مرتبة وواضحة، مع إمكانية فتح كل نشرة PDF مباشرة من الزر الخاص بها.
-            </div>
-            <div class="btn-row-home">
+    <div class="news-box">
+      <div class="news-accordion">
+        <button class="news-accordion-header" type="button" onclick="toggleNews()">
+          <span>قائمة النشرات الرسمية للبطولة</span>
+          <strong>نشرة البطولة</strong>
+        </button>
+
+        <div class="news-accordion-body" id="newsBody">
+          <div class="news-list">
+            <div class="news-row">
+              <div class="news-info">
+                <h3>بداية النسخة 13 من بطولة كأس منصور بن زايد لكرة القدم</h3>
+                <p>النشرة الأولى – تمهيد لربط ملفات PDF الرسمية لاحقًا من الأقدم إلى الأحدث.</p>
+              </div>
               <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
             </div>
-          </div>
-        </article>
 
-        <article class="news-item">
-          <div class="news-badge">2</div>
-          <div class="news-content">
-            <h3>متابعة تغطية البطولة يوماً بعد يوم</h3>
-            <div class="news-meta">النشرات ستُربط لاحقًا بالملفات الرسمية</div>
-            <div class="news-text">
-              في هذه المرحلة الأولى اعتمدنا الشكل النهائي للواجهة الرئيسية فقط، لضمان سلامة الموقع وعدم المساس بصفحات المجموعات أو الأدوار النهائية أو الجوائز.
-            </div>
-            <div class="btn-row-home">
+            <div class="news-row">
+              <div class="news-info">
+                <h3>متابعة فعاليات البطولة يوماً بعد يوم</h3>
+                <p>ستُعرض النشرات النهائية داخل هذا الصندوق بشكل مرتب ومختصر دون إطالة في الصفحة.</p>
+              </div>
               <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
             </div>
-          </div>
-        </article>
 
-        <article class="news-item">
-          <div class="news-badge">3</div>
-          <div class="news-content">
-            <h3>ختام البطولة وتوثيق أبرز اللحظات</h3>
-            <div class="news-meta">مكان مخصص للنشرات الأخيرة</div>
-            <div class="news-text">
-              بعد اعتماد شكل الصفحة الجديدة، سنربط ملفات PDF النهائية للنشرات واحدةً تلو الأخرى حتى تبقى الصفحة مستقرة وآمنة دون أي تأثير على بقية المشروع.
-            </div>
-            <div class="btn-row-home">
+            <div class="news-row">
+              <div class="news-info">
+                <h3>ختام البطولة وأبرز المحطات</h3>
+                <p>هذا الشكل معتمد لتجنب كثرة البطاقات والحفاظ على جمال الصفحة الرئيسية خصوصًا في الهاتف.</p>
+              </div>
               <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
             </div>
-          </div>
-        </article>
-      </div>
-
-      <aside class="quick-panel">
-        <div class="quick-box">
-          <h3>روابط سريعة</h3>
-          <div class="quick-links">
-            <a class="quick-link" href="group.html?g=A"><span class="quick-icon i-a">A</span><span>المجموعة A</span></a>
-            <a class="quick-link" href="group.html?g=B"><span class="quick-icon i-b">B</span><span>المجموعة B</span></a>
-            <a class="quick-link" href="group.html?g=C"><span class="quick-icon i-c">C</span><span>المجموعة C</span></a>
-            <a class="quick-link" href="group.html?g=D"><span class="quick-icon i-d">D</span><span>المجموعة D</span></a>
-            <a class="quick-link" href="knockout.html"><span class="quick-icon i-k">★</span><span>الأدوار النهائية</span></a>
-            <a class="quick-link" href="awards.html"><span class="quick-icon i-w">🏆</span><span>الجوائز الفردية</span></a>
           </div>
         </div>
-      </aside>
+      </div>
     </div>
   </section>
 
@@ -454,7 +432,10 @@
 
     <div class="videos-grid">
       <article class="video-card">
-        <div class="video-thumb">▶</div>
+        <div class="video-thumb">
+          <img src="assets/img/bg-hero.jpg" alt="المؤتمر الصحفي" />
+          <div class="video-play">▶</div>
+        </div>
         <div class="video-body">
           <h3>المؤتمر الصحفي للإعلان عن النسخة 13 من كأس منصور بن زايد</h3>
           <p>إطلاق البطولة رسميًا والإعلان عن تفاصيل النسخة الثالثة عشرة.</p>
@@ -463,7 +444,10 @@
       </article>
 
       <article class="video-card">
-        <div class="video-thumb">▶</div>
+        <div class="video-thumb">
+          <img src="assets/img/bg-hero.jpg" alt="زيارة الشيخ منصور" />
+          <div class="video-play">▶</div>
+        </div>
         <div class="video-body">
           <h3>زيارة الشيخ منصور</h3>
           <p>منصور بن زايد يشهد منافسات ثالث جولات البطولة في تغطية خاصة.</p>
@@ -472,7 +456,10 @@
       </article>
 
       <article class="video-card">
-        <div class="video-thumb">▶</div>
+        <div class="video-thumb">
+          <img src="assets/img/bg-hero.jpg" alt="ملخص النهائي" />
+          <div class="video-play">▶</div>
+        </div>
         <div class="video-body">
           <h3>ملخص المباراة النهائية</h3>
           <p>أبرز لقطات اليوم السادس عشر وختام النسخة 13 من البطولة.</p>
@@ -485,41 +472,64 @@
   <section class="section-card">
     <div class="section-head">
       <h2>معرض صور البطولة</h2>
-      <div class="section-sub">واجهة تمهيدية للصور المختارة من فعاليات البطولة</div>
+      <div class="section-sub">واجهة أنيقة للصور المختارة من فعاليات البطولة</div>
     </div>
 
     <div class="gallery-grid">
-      <div class="gallery-card">
-        <h3>زيارة الشيخ منصور</h3>
-        <p>مكان مخصص للصورة الأولى من الزيارة الرسمية.</p>
-      </div>
-      <div class="gallery-card">
-        <h3>حفل الافتتاح</h3>
-        <p>مكان مخصص لصورة من أجواء الافتتاح.</p>
-      </div>
-      <div class="gallery-card">
-        <h3>المدرجات والتفاعل الجماهيري</h3>
-        <p>مكان مخصص لصورة من التفاعل الجماهيري.</p>
-      </div>
-      <div class="gallery-card">
-        <h3>لقطات من المنافسات</h3>
-        <p>مكان مخصص لصورة من داخل الملعب.</p>
-      </div>
-      <div class="gallery-card">
-        <h3>نهاية البطولة</h3>
-        <p>مكان مخصص لصورة من الختام أو التتويج.</p>
-      </div>
-      <div class="gallery-card">
-        <h3>صورة إضافية من البطولة</h3>
-        <p>يمكن تخصيصها لأي لقطة مهمة لاحقًا.</p>
-      </div>
+      <article class="gallery-card">
+        <img src="assets/img/bg-hero.jpg" alt="زيارة الشيخ منصور" />
+        <div class="gallery-body">
+          <h3>زيارة الشيخ منصور</h3>
+          <p>مكان مخصص للصورة الأولى من الزيارة الرسمية.</p>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="assets/img/bg-hero.jpg" alt="حفل الافتتاح" />
+        <div class="gallery-body">
+          <h3>حفل الافتتاح</h3>
+          <p>مكان مخصص لصورة من أجواء الافتتاح.</p>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="assets/img/bg-hero.jpg" alt="التفاعل الجماهيري" />
+        <div class="gallery-body">
+          <h3>المدرجات والتفاعل الجماهيري</h3>
+          <p>مكان مخصص لصورة من التفاعل الجماهيري.</p>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="assets/img/bg-hero.jpg" alt="لقطات من المنافسات" />
+        <div class="gallery-body">
+          <h3>لقطات من المنافسات</h3>
+          <p>مكان مخصص لصورة من داخل الملعب.</p>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="assets/img/bg-hero.jpg" alt="نهاية البطولة" />
+        <div class="gallery-body">
+          <h3>نهاية البطولة</h3>
+          <p>مكان مخصص لصورة من الختام أو التتويج.</p>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="assets/img/bg-hero.jpg" alt="صورة إضافية" />
+        <div class="gallery-body">
+          <h3>صورة إضافية من البطولة</h3>
+          <p>مكان مخصص لأي لقطة مهمة إضافية.</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <section class="section-card">
     <div class="section-head">
       <h2>تابع البطولة عبر منصات ديوان سبورت</h2>
-      <div class="section-sub">اضغط على الشعار للانتقال المباشر دون إظهار الرابط</div>
+      <div class="section-sub">اضغط على الأيقونة للانتقال المباشر دون إظهار الروابط</div>
     </div>
 
     <div class="social-wrap">
@@ -543,6 +553,12 @@
 </footer>
 
 <script>
+  function toggleNews(){
+    const body = document.getElementById("newsBody");
+    if(!body) return;
+    body.style.display = (body.style.display === "none") ? "block" : "none";
+  }
+
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("service-worker.js")
