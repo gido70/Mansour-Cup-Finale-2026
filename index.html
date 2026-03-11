@@ -136,6 +136,7 @@
       font-weight:700;
       transition:.2s ease;
       white-space:nowrap;
+      cursor:pointer;
     }
 
     .btn-home:hover{
@@ -242,6 +243,7 @@
       font-size:3rem;
       text-shadow:0 4px 18px rgba(0,0,0,.45);
       position:relative;
+      overflow:hidden;
     }
 
     .video-thumb img{
@@ -261,6 +263,14 @@
       font-size:3rem;
       text-shadow:0 4px 18px rgba(0,0,0,.45);
       pointer-events:none;
+    }
+
+    .video-thumb-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:1;
+      filter:none;
     }
 
     .video-body{
@@ -317,6 +327,36 @@
       color:rgba(255,255,255,.78);
       line-height:1.7;
       font-size:.96rem;
+    }
+
+    .gallery-photo{
+      padding:0;
+      overflow:hidden;
+    }
+
+    .gallery-photo img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .gallery-caption{
+      padding:14px 16px 16px;
+      text-align:center;
+    }
+
+    .gallery-caption h3{
+      margin:0 0 6px;
+      color:#fff;
+      font-size:1.15rem;
+    }
+
+    .gallery-caption p{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      line-height:1.7;
+      font-size:.95rem;
     }
 
     .social-wrap{
@@ -446,7 +486,7 @@
 
   <section class="section-card">
     <div class="section-head">
-      <h2>نشرة البطولة</h2>
+      <h2>مجريات أحداث البطولة</h2>
     </div>
 
     <div class="top-grid">
@@ -488,7 +528,7 @@
       </div>
 
       <div class="news-accordion">
-        <button class="news-accordion-header" type="button" onclick="toggleNews()">
+        <button class="news-accordion-header" type="button">
           نشرة البطولة
         </button>
 
@@ -496,26 +536,74 @@
           <div class="news-list">
             <div class="news-row">
               <div class="news-info">
-                <h3>النشرة الأولى</h3>
-                <p></p>
+                <h3>العدد الأول</h3>
+                <p>بداية النسخة 13 من البطولة</p>
               </div>
               <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
             </div>
 
             <div class="news-row">
               <div class="news-info">
-                <h3>متابعة فعاليات البطولة يوماً بعد يوم</h3>
-                <p>النشرة الثانية</p>
+                <h3>العدد الثاني</h3>
+                <p>متابعة فعاليات البطولة يوماً بعد يوم</p>
               </div>
               <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
             </div>
 
             <div class="news-row">
               <div class="news-info">
-                <h3>ختام البطولة وأبرز المحطات</h3>
-                <p>النشرة الختامية</p>
+                <h3>العدد الثالث</h3>
+                <p>تغطية مجريات البطولة وأبرز اللقطات</p>
               </div>
               <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
+            </div>
+
+            <div class="news-row">
+              <div class="news-info">
+                <h3>العدد الرابع</h3>
+                <p>أخبار البطولة وتفاصيل المنافسات</p>
+              </div>
+              <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
+            </div>
+
+            <div id="moreIssues" style="display:none;">
+              <div class="news-row">
+                <div class="news-info">
+                  <h3>العدد الخامس</h3>
+                  <p>مكان مخصص لبقية النشرات</p>
+                </div>
+                <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
+              </div>
+
+              <div class="news-row">
+                <div class="news-info">
+                  <h3>العدد السادس</h3>
+                  <p>مكان مخصص لبقية النشرات</p>
+                </div>
+                <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
+              </div>
+
+              <div class="news-row">
+                <div class="news-info">
+                  <h3>العدد السابع</h3>
+                  <p>مكان مخصص لبقية النشرات</p>
+                </div>
+                <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
+              </div>
+
+              <div class="news-row">
+                <div class="news-info">
+                  <h3>العدد الثامن</h3>
+                  <p>مكان مخصص لبقية النشرات</p>
+                </div>
+                <a class="btn-home" href="#" onclick="return false;">قراءة النشرة</a>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:12px;">
+              <button class="btn-home" type="button" onclick="toggleMoreIssues()">
+                عرض بقية الأعداد
+              </button>
             </div>
           </div>
         </div>
@@ -541,8 +629,8 @@
       </article>
 
       <article class="video-card">
-        <div class="video-thumb">
-          <img src="assets/img/logo-tournament.png" alt="شعار البطولة">
+        <div class="video-thumb video-thumb-photo">
+          <img src="assets/img/sheikh-visit-1.jpg" alt="زيارة الشيخ منصور">
         </div>
         <div class="video-body">
           <h3>زيارة الشيخ منصور</h3>
@@ -570,34 +658,40 @@
     </div>
 
     <div class="gallery-grid">
-      <div class="gallery-card">
-        <h3>زيارة الشيخ منصور</h3>
-        <p>صورة من الزيارة الرسمية</p>
+      <div class="gallery-card gallery-photo">
+        <img src="assets/img/sheikh-visit-1.jpg" alt="زيارة الشيخ منصور">
+        <div class="gallery-caption">
+          <h3>زيارة الشيخ منصور</h3>
+          <p>لقطة من الزيارة الرسمية للبطولة</p>
+        </div>
+      </div>
+
+      <div class="gallery-card gallery-photo">
+        <img src="assets/img/sheikh-visit-2.jpg" alt="زيارة الشيخ منصور">
+        <div class="gallery-caption">
+          <h3>من المدرجات</h3>
+          <p>متابعة مجريات البطولة من المنصة</p>
+        </div>
       </div>
 
       <div class="gallery-card">
         <h3>حفل الافتتاح</h3>
-        <p>صورة من أجواء الافتتاح</p>
+        <p>مكان مخصص للصورة القادمة</p>
       </div>
 
       <div class="gallery-card">
         <h3>التفاعل الجماهيري</h3>
-        <p>صورة من المدرجات أو التفاعل الجماهيري</p>
-      </div>
-
-      <div class="gallery-card">
-        <h3>لقطات من المنافسات</h3>
-        <p>صورة من داخل الملعب</p>
+        <p>مكان مخصص للصورة القادمة</p>
       </div>
 
       <div class="gallery-card">
         <h3>ختام البطولة</h3>
-        <p>صورة من الختام أو التتويج</p>
+        <p>مكان مخصص للصورة القادمة</p>
       </div>
 
       <div class="gallery-card">
         <h3>صورة إضافية</h3>
-        <p>مكان لصورة مهمة إضافية من البطولة</p>
+        <p>مكان مخصص للصورة القادمة</p>
       </div>
     </div>
   </section>
@@ -623,10 +717,10 @@
 </footer>
 
 <script>
-  function toggleNews(){
-    const body = document.getElementById("newsBody");
-    if(!body) return;
-    body.style.display = (body.style.display === "none") ? "block" : "none";
+  function toggleMoreIssues(){
+    const box = document.getElementById("moreIssues");
+    if(!box) return;
+    box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
   }
 
   if ("serviceWorker" in navigator) {
