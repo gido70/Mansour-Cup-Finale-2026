@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!items.length) return;
 
-  // On phone: disable opening to avoid hanging; gallery becomes horizontal swipe only.
   if (isPhone || !lightbox) {
     items.forEach((item) => {
       item.addEventListener("click", (e) => e.preventDefault());
