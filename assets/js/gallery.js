@@ -5,11 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!items.length) return;
 
-  // على الهاتف: افتح الصورة مباشرة في تبويب جديد، بدون لايت بوكس
+  // على الهاتف: لا تكبير ولا انتقال للصورة المنفردة، فقط تصفح أفقي
   if (isPhone || !lightbox) {
     items.forEach((item) => {
-      item.setAttribute("target", "_blank");
-      item.setAttribute("rel", "noopener");
+      item.addEventListener("click", (e) => e.preventDefault());
     });
     return;
   }
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnClose = lightbox.querySelector(".lb-close");
   const btnPrev = lightbox.querySelector(".lb-prev");
   const btnNext = lightbox.querySelector(".lb-next");
-
   let current = 0;
 
   function show(index){
@@ -27,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.classList.add("show");
     document.body.style.overflow = "hidden";
   }
-
   function closeBox(){
     lightbox.classList.remove("show");
     lbImg.src = "";
@@ -44,11 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnClose) btnClose.addEventListener("click", closeBox);
   if (btnPrev) btnPrev.addEventListener("click", () => show(current - 1));
   if (btnNext) btnNext.addEventListener("click", () => show(current + 1));
-
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeBox();
   });
-
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("show")) return;
     if (e.key === "Escape") closeBox();
