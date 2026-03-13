@@ -1,51 +1,36 @@
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener('DOMContentLoaded', function(){
-  const items = Array.from(document.querySelectorAll('.gallery-item'));
-  const lightbox = document.querySelector('.lightbox');
-  if(!lightbox || !items.length) return;
+const items = document.querySelectorAll(".photo-item");
+const lightbox = document.querySelector(".lightbox");
+const img = lightbox.querySelector("img");
 
-  const lightboxImg = lightbox.querySelector('img');
-  const prevBtn = lightbox.querySelector('.lightbox-prev');
-  const nextBtn = lightbox.querySelector('.lightbox-next');
-  const closeBtn = lightbox.querySelector('.lightbox-close');
-  let currentIndex = 0;
+let current = 0;
 
-  function openAt(index){
-    currentIndex = index;
-    lightboxImg.src = items[currentIndex].getAttribute('href');
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function show(index){
+current = index;
+img.src = items[index].href;
+lightbox.classList.add("show");
+}
 
-  function closeBox(){
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+items.forEach((item,i)=>{
+item.addEventListener("click",e=>{
+e.preventDefault();
+show(i);
+});
+});
 
-  function showNext(step){
-    currentIndex = (currentIndex + step + items.length) % items.length;
-    lightboxImg.src = items[currentIndex].getAttribute('href');
-  }
+document.querySelector(".lb-close").onclick = () =>{
+lightbox.classList.remove("show");
+};
 
-  items.forEach((item, index) => {
-    item.addEventListener('click', function(e){
-      e.preventDefault();
-      openAt(index);
-    });
-  });
+document.querySelector(".lb-prev").onclick = ()=>{
+current = (current - 1 + items.length) % items.length;
+img.src = items[current].href;
+};
 
-  prevBtn.addEventListener('click', function(){ showNext(-1); });
-  nextBtn.addEventListener('click', function(){ showNext(1); });
-  closeBtn.addEventListener('click', closeBox);
+document.querySelector(".lb-next").onclick = ()=>{
+current = (current + 1) % items.length;
+img.src = items[current].href;
+};
 
-  lightbox.addEventListener('click', function(e){
-    if(e.target === lightbox) closeBox();
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(!lightbox.classList.contains('open')) return;
-    if(e.key === 'Escape') closeBox();
-    if(e.key === 'ArrowLeft') showNext(1);
-    if(e.key === 'ArrowRight') showNext(-1);
-  });
 });
