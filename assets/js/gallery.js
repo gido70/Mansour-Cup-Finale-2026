@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!items.length) return;
 
-  // On phone: no lightbox, open the image directly in a new tab to avoid hanging.
+  // على الهاتف: افتح الصورة مباشرة في تبويب جديد، بدون لايت بوكس
   if (isPhone || !lightbox) {
     items.forEach((item) => {
       item.setAttribute("target", "_blank");
@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  btnClose?.addEventListener("click", closeBox);
-  btnPrev?.addEventListener("click", () => show(current - 1));
-  btnNext?.addEventListener("click", () => show(current + 1));
+  if (btnClose) btnClose.addEventListener("click", closeBox);
+  if (btnPrev) btnPrev.addEventListener("click", () => show(current - 1));
+  if (btnNext) btnNext.addEventListener("click", () => show(current + 1));
 
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeBox();
