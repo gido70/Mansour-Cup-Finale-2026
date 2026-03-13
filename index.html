@@ -926,9 +926,7 @@
             </div>
 
             <div style="text-align:center; margin-top:12px;">
-              <button class="btn-home" type="button" onclick="toggleMoreIssues()">
-                عرض بقية الأعداد
-              </button>
+              <button id="toggleIssuesBtn" class="btn-home" type="button" onclick="toggleMoreIssues()">عرض بقية الأعداد</button>
             </div>
 
           </div>
@@ -1063,8 +1061,12 @@
 <script>
   function toggleMoreIssues(){
     const box = document.getElementById("moreIssues");
-    if(!box) return;
-    box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+    const btn = document.getElementById("toggleIssuesBtn");
+    if(!box || !btn) return;
+
+    const isHidden = (box.style.display === "none" || box.style.display === "");
+    box.style.display = isHidden ? "block" : "none";
+    btn.textContent = isHidden ? "إخفاء بقية الأعداد" : "عرض بقية الأعداد";
   }
 
   if ("serviceWorker" in navigator) {
