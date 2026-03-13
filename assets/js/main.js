@@ -82,6 +82,10 @@ const CupApp = (() => {
   function videoLinkHTML(m, videos, compact=false){
     const url = getVideoUrl(m, videos);
     if(!url) return '';
+    // تجربة آمنة على مباراة النهائي فقط: افتح صفحة التفاصيل داخل المشروع
+    if(compact && m && m.match_code === 'F32'){
+      return `<a href="match.html?id=${encodeURIComponent(m.match_code)}&video=1">🎥 الفيديو</a>`;
+    }
     const label = compact ? '🎥 الفيديو' : '🎥 مشاهدة المباراة على يوتيوب';
     const cls = compact ? '' : ' class="btn" target="_blank" rel="noopener"';
     return `<a${cls} href="${escapeHTML(url)}" target="_blank" rel="noopener">${label}</a>`;
@@ -373,8 +377,28 @@ const CupApp = (() => {
     const videoWrap = qs('#matchVideoWrap');
     if(videoWrap){
       const videoUrl = getVideoUrl(m, videos);
+      const directUrl = (videoUrl || '').replace('/embed/', '/watch?v=').replace('youtube.com/watch?v=', 'youtube.com/watch?v=');
+      const wantsVideo = getParam('video') === '1';
       videoWrap.innerHTML = videoUrl
-        ? `<div class="btn-row"><a class="btn" href="${escapeHTML(videoUrl)}" target="_blank" rel="noopener">🎥 مشاهدة المباراة على يوتيوب</a></div>`
+        ? (
+            wantsVideo
+            ? `<div style="display:grid;gap:14px">
+                 <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+                   <iframe
+                     src="${escapeHTML(videoUrl)}"
+                     title="فيديو المباراة"
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                     referrerpolicy="strict-origin-when-cross-origin"
+                     allowfullscreen
+                     style="position:absolute;inset:0;width:100%;height:100%;border:0"
+                   ></iframe>
+                 </div>
+                 <div class="btn-row">
+                   <a class="btn" href="${escapeHTML(directUrl)}" target="_blank" rel="noopener">🔗 فتح الفيديو مباشرة</a>
+                 </div>
+               </div>`
+            : `<div class="btn-row"><a class="btn" href="${escapeHTML(videoUrl)}" target="_blank" rel="noopener">🎥 مشاهدة المباراة على يوتيوب</a></div>`
+          )
         : `<div class="muted">لا يوجد فيديو مضاف لهذه المباراة بعد.</div>`;
     }
 
