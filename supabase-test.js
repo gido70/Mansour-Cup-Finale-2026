@@ -1,4 +1,15 @@
-const SUPABASE_URL = "https://npoowwdjpbvhyjrmeqkv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_VVHZURoVGvIV8Ys-lQOL5w_nR-Ayhw8";
+console.log("🔥 TEST FILE WORKING");
 
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+async function testConnection() {
+  const { data, error } = await supabaseClient
+    .from("teams")
+    .select("*");
+
+  if (error) {
+    console.error("❌ خطأ:", error);
+  } else {
+    console.log("✅ البيانات:", data);
+  }
+}
+
+testConnection();
