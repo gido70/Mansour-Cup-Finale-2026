@@ -20,7 +20,7 @@
   </div>
   <div class="brand">
     <div class="brand-title">بطولة كأس منصور بن زايد 2026</div>
-    <div class="brand-sub">الأدوار النهائية</div>
+    <div class="brand-sub" id="pageSub">الأدوار النهائية</div>
   </div>
   <div class="topbar-logos">
     <img class="logo" src="assets/img/logo-cup-white.png" alt="شعار البطولة" />
@@ -52,7 +52,7 @@
         <a class="btn btn-gd" href="final.html">النهائي</a>
       </div>
       <div class="muted small" style="margin-top:10px">
-        اختر الدور المطلوب من الأزرار أعلاه. كل صفحة تقرأ مبارياتها من Supabase مباشرة.
+        طريقة الإدخال: ضع مباريات الأدوار النهائية داخل <span class="mono">data/matches.csv</span> واجعل عمود <span class="mono">group</span> يساوي: QF / SF / TP / F.
       </div>
     </div>
   </section>
@@ -60,6 +60,8 @@
 
 <footer class="footer">© بطولة كأس منصور بن زايد 2026</footer>
 
+<script src="assets/js/main.js"></script>
+<script> CupApp.initKnockout(); </script>
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
