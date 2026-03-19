@@ -262,19 +262,22 @@ async function loadStageMatches() {
   }
 
   container.innerHTML = matches.map(match => `
-    <article class="match-card">
-      <div class="match-meta">
-        <div class="match-code">${match.match_code || ''}</div>
-        <div class="match-time">${match.match_time || ''}</div>
-        <div class="match-date">${match.match_date || ''}</div>
-      </div>
-      <div class="match-main">
-        <div class="team-name team-right">${teamMap[match.home_team_id] || '—'}</div>
-        <div class="score-box">${match.home_score} : ${match.away_score}</div>
-        <div class="team-name team-left">${teamMap[match.away_team_id] || '—'}</div>
-      </div>
-    </article>
-  `).join('');
+  <article class="match-card">
+    <div class="match-meta">
+      <div class="match-code">${match.match_code || ''}</div>
+      <div class="match-time">${match.match_time || ''}</div>
+      <div class="match-date">${match.match_date || ''}</div>
+    </div>
+    <div class="match-main">
+      <div class="team-name team-right">${teamMap[match.home_team_id] || '-'}</div>
+      <div class="score-box">${match.home_score} : ${match.away_score}</div>
+      <div class="team-name team-left">${teamMap[match.away_team_id] || '-'}</div>
+    </div>
+    <div class="match-links" style="margin-top:12px;text-align:center;">
+      <a href="match.html?id=${encodeURIComponent(match.match_code)}" class="btn">تفاصيل</a>
+    </div>
+  </article>
+`).join('');
 }
 
 document.addEventListener("DOMContentLoaded", loadStageMatches);
