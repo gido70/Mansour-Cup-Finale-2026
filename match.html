@@ -13,158 +13,53 @@
   <meta name="apple-mobile-web-app-title" content="كأس منصور">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <style>
-    .match-wrap{max-width:1000px;margin:0 auto;padding:18px 14px 40px;}
-    .match-card{background:linear-gradient(180deg, rgba(12,30,58,.96), rgba(8,23,44,.96));border:1px solid rgba(255,255,255,.08);border-radius:22px;box-shadow:0 12px 34px rgba(0,0,0,.24);overflow:hidden}
-    .match-head{padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.08);text-align:center}
-    .match-head h2{margin:0;font-size:2rem;color:#fff}
-    .meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;color:rgba(255,255,255,.75);margin-top:10px}
-    .score-area{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;padding:26px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
-    .team-box{text-align:center;color:#fff;font-weight:800;font-size:1.25rem}
-    .score-box{font-size:2.1rem;font-weight:900;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:12px 18px;border-radius:18px;min-width:140px;text-align:center}
-    .section{padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.08)}
-    .section:last-child{border-bottom:none}
-    .section h3{margin:0 0 12px;color:#fff}
-    .events-list{display:grid;gap:10px}
-    .event-item{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:#fff}
-    .note{color:rgba(255,255,255,.74)}
-    .error{padding:14px;border-radius:14px;border:1px solid rgba(255,120,120,.35);background:rgba(160,30,30,.16);color:#ffd8d8}
+    .home-wrap{max-width:1200px;margin:0 auto;padding:18px 14px 40px;}
+    .section-card{background:linear-gradient(180deg, rgba(12,30,58,.96), rgba(8,23,44,.96));border:1px solid rgba(255,255,255,.08);border-radius:22px;box-shadow:0 12px 34px rgba(0,0,0,.24);overflow:hidden;margin-bottom:24px;}
+    .section-head{display:flex;align-items:center;justify-content:center;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.01));}
+    .section-head h2{margin:0;font-size:2rem;color:#fff;text-align:center;line-height:1.2;}
+    .match-meta{padding:16px 22px;text-align:center;color:#d9e6ff;font-size:1.05rem;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+    .score-row{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;padding:20px 22px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+    .team-name{font-size:2rem;font-weight:800;color:#fff;line-height:1.5}
+    .score-box{min-width:150px;text-align:center;font-size:3rem;font-weight:900;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#fff}
+    .body-pad{padding:18px 22px}
+    .list-box{border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:16px;color:#fff;margin-bottom:16px}
+    .list-box h3{margin:0 0 12px;font-size:1.5rem}
+    .item{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);margin-bottom:10px}
+    .empty{padding:14px;border-radius:14px;background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.18);color:#fff}
+    @media (max-width:720px){.score-row{grid-template-columns:1fr}.team-name{text-align:center;font-size:1.5rem}.score-box{margin:0 auto;font-size:2.2rem;min-width:120px}}
   </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="topbar-logos"><img class="logo" src="assets/img/logo-committee-white.png" alt="شعار اللجنة" /></div>
-  <div class="brand"><div class="brand-title">بطولة كأس منصور بن زايد 2026</div><div class="brand-sub">تفاصيل المباراة</div></div>
-  <div class="topbar-logos"><img class="logo" src="assets/img/logo-cup-white.png" alt="شعار البطولة" /></div>
-  <nav class="nav">
-    <a class="nav-link" href="index.html">الرئيسية</a>
-    <a class="nav-link" href="group.html?g=A">المجموعة A</a>
-    <a class="nav-link" href="group.html?g=B">المجموعة B</a>
-    <a class="nav-link" href="group.html?g=C">المجموعة C</a>
-    <a class="nav-link" href="group.html?g=D">المجموعة D</a>
-    <a class="nav-link" href="knockout.html">الأدوار النهائية</a>
-  </nav>
-</header>
-<main class="match-wrap">
-  <section class="match-card">
-    <div class="match-head">
-      <h2 id="match-title">تفاصيل المباراة</h2>
-      <div class="meta"><span id="match-stage"></span><span id="match-date"></span><span id="match-time"></span></div>
-    </div>
-    <div class="score-area">
-      <div class="team-box" id="home-name">—</div>
-      <div class="score-box" id="score-box">0 : 0</div>
-      <div class="team-box" id="away-name">—</div>
-    </div>
-    <div class="section">
-      <h3>الأهداف</h3>
-      <div id="goals-list" class="events-list"><div class="note">جارٍ تحميل الأهداف...</div></div>
-    </div>
-    <div class="section">
-      <h3>أحداث المباراة</h3>
-      <div id="events-list" class="events-list"><div class="note">جارٍ تحميل الأحداث...</div></div>
-    </div>
-  </section>
-</main>
+<header class="topbar"><div class="topbar-logos"><img class="logo" src="assets/img/logo-committee-white.png" alt="شعار اللجنة" /></div><div class="brand"><div class="brand-title">بطولة كأس منصور بن زايد 2026</div><div class="brand-sub">تفاصيل المباراة</div></div><div class="topbar-logos"><img class="logo" src="assets/img/logo-cup-white.png" alt="شعار البطولة" /></div><nav class="nav"><a class="nav-link" href="index.html">الرئيسية</a><a class="nav-link" href="group.html?g=A">المجموعة A</a><a class="nav-link" href="group.html?g=B">المجموعة B</a><a class="nav-link" href="group.html?g=C">المجموعة C</a><a class="nav-link" href="group.html?g=D">المجموعة D</a><a class="nav-link" href="knockout.html">الأدوار النهائية</a></nav></header>
+<main class="home-wrap"><section class="section-card"><div class="section-head"><h2 id="matchTitle">تفاصيل المباراة</h2></div><div class="match-meta"><span id="stageLabel">-</span><span id="matchDate">-</span><span id="matchTime">-</span></div><div class="score-row"><div class="team-name" id="homeTeam">-</div><div class="score-box" id="scoreBox">0 : 0</div><div class="team-name" id="awayTeam">-</div></div><div class="body-pad"><div class="list-box"><h3>الأهداف</h3><div id="goalsList" class="empty">لا توجد أهداف مسجلة لهذه المباراة.</div></div><div class="list-box"><h3>أحداث المباراة</h3><div id="eventsList" class="empty">لا توجد أحداث مسجلة لهذه المباراة.</div></div></div></section></main>
 <footer class="footer"><a class="muted" href="javascript:history.back()">العودة</a></footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
 <script>
-(async function () {
+(function(){
   const params = new URLSearchParams(window.location.search);
   const matchId = params.get('id');
-
-  const titleEl = document.getElementById('match-title');
-  const stageEl = document.getElementById('match-stage');
-  const dateEl = document.getElementById('match-date');
-  const timeEl = document.getElementById('match-time');
-  const homeEl = document.getElementById('home-name');
-  const awayEl = document.getElementById('away-name');
-  const scoreEl = document.getElementById('score-box');
-  const goalsEl = document.getElementById('goals-list');
-  const eventsEl = document.getElementById('events-list');
-
-  function showBox(el, msg, isError=false) {
-    el.innerHTML = `<div class="${isError ? 'error' : 'note'}">${msg}</div>`;
+  const teamCache = new Map();
+  const stageMap = {'Group Stage':'دور المجموعات','Quarter Final':'ربع النهائي','Semi Final':'نصف النهائي','Third Place':'الثالث والرابع','Final':'النهائي'};
+  async function preloadTeams(){ const {data}=await supabaseClient.from('teams').select('id,name'); (data||[]).forEach(t=>teamCache.set(t.id,t.name)); }
+  function setText(id,val){ document.getElementById(id).textContent = val || '-'; }
+  function renderList(elId, items, emptyText){ const el=document.getElementById(elId); if(!items.length){ el.className='empty'; el.textContent=emptyText; return; } el.className=''; el.innerHTML=items.map(x=>`<div class="item">${x}</div>`).join(''); }
+  async function load(){
+    if(!matchId){ setText('matchTitle','لا يوجد معرف مباراة'); return; }
+    await preloadTeams();
+    const {data: match, error: matchError} = await supabaseClient.from('matches').select(`id, stage, round_name, match_date, kickoff_time, home_score, away_score, home_team:home_team_id ( id, name ), away_team:away_team_id ( id, name )`).eq('id', matchId).single();
+    if(matchError || !match){ console.error(matchError); setText('matchTitle','تعذر تحميل تفاصيل المباراة'); return; }
+    const stageLabel = match.round_name || stageMap[match.stage] || match.stage || 'مباراة';
+    setText('matchTitle', stageLabel); setText('stageLabel', stageLabel); setText('matchDate', match.match_date || '-'); setText('matchTime', match.kickoff_time || '-'); setText('homeTeam', match.home_team?.name || '-'); setText('awayTeam', match.away_team?.name || '-'); setText('scoreBox', `${Number.isInteger(match.home_score)?match.home_score:0} : ${Number.isInteger(match.away_score)?match.away_score:0}`);
+    const {data: goals} = await supabaseClient.from('goals').select('minute, goal_type, team_id, player_id').eq('match_id', matchId).order('minute',{ascending:true});
+    const {data: players} = await supabaseClient.from('players').select('id, full_name');
+    const playerMap = new Map((players||[]).map(p=>[p.id,p.full_name]));
+    const goalItems = (goals||[]).map(g=>{ const team = teamCache.get(g.team_id)||'فريق'; const player = playerMap.get(g.player_id)||''; const kind = g.goal_type==='goal'?'هدف':(g.goal_type||'هدف'); return `${kind} - ${team}${player ? ' - ' + player : ''} - الدقيقة ${g.minute ?? '-'}`; });
+    renderList('goalsList', goalItems, 'لا توجد أهداف مسجلة لهذه المباراة.');
+    const {data: events} = await supabaseClient.from('match_events').select('minute, event_type, team_id, player_id').eq('match_id', matchId).order('minute',{ascending:true});
+    const eventLabel = {goal:'هدف',yellow_card:'بطاقة صفراء',red_card:'بطاقة حمراء',var:'VAR',injury:'إصابة',penalty_goal:'هدف من ضربة جزاء',penalty_missed:'ضربة جزاء ضائعة',own_goal:'هدف عكسي',shot_on_target_saved:'تصدى حارس المرمى'};
+    const eventItems = (events||[]).map(e=>{ const team = teamCache.get(e.team_id)||'فريق'; const player = playerMap.get(e.player_id)||''; return `${eventLabel[e.event_type] || e.event_type} - ${team}${player ? ' - ' + player : ''} - الدقيقة ${e.minute ?? '-'}`; });
+    renderList('eventsList', eventItems, 'لا توجد أحداث مسجلة لهذه المباراة.');
   }
-
-  if (!matchId) {
-    showBox(goalsEl, 'لا يوجد معرف مباراة في الرابط.', true);
-    showBox(eventsEl, 'لا يوجد معرف مباراة في الرابط.', true);
-    return;
-  }
-
-  try {
-    const { data: match, error: matchError } = await supabaseClient
-      .from('matches')
-      .select(`
-        id, stage, round_name, match_number, match_date, kickoff_time, home_score, away_score,
-        home_team:home_team_id ( id, name ),
-        away_team:away_team_id ( id, name )
-      `)
-      .eq('id', matchId)
-      .single();
-    if (matchError) throw matchError;
-
-    titleEl.textContent = match.round_name || match.stage || 'تفاصيل المباراة';
-    stageEl.textContent = match.stage || '';
-    dateEl.textContent = match.match_date || '';
-    timeEl.textContent = match.kickoff_time || '';
-    homeEl.textContent = match.home_team?.name || '—';
-    awayEl.textContent = match.away_team?.name || '—';
-    scoreEl.textContent = `${match.home_score} : ${match.away_score}`;
-
-    const teamMap = {
-      [match.home_team?.id]: match.home_team?.name || '—',
-      [match.away_team?.id]: match.away_team?.name || '—'
-    };
-
-    const [{ data: goals, error: goalsError }, { data: events, error: eventsError }] = await Promise.all([
-      supabaseClient.from('goals').select('id, minute, team_id, goal_type').eq('match_id', matchId).order('minute', { ascending: true }),
-      supabaseClient.from('match_events').select('id, minute, event_type, team_id, notes').eq('match_id', matchId).order('minute', { ascending: true })
-    ]);
-    if (goalsError) throw goalsError;
-    if (eventsError) throw eventsError;
-
-    if (!goals || !goals.length) {
-      showBox(goalsEl, 'لا توجد أهداف مسجلة لهذه المباراة.');
-    } else {
-      goalsEl.innerHTML = goals.map(goal => `
-        <div class="event-item">⚽ ${teamMap[goal.team_id] || 'فريق'} — الدقيقة ${goal.minute}${goal.goal_type ? ` — ${goal.goal_type}` : ''}</div>
-      `).join('');
-    }
-
-    if (!events || !events.length) {
-      showBox(eventsEl, 'لا توجد أحداث مسجلة لهذه المباراة.');
-    } else {
-      const labels = {
-        goal: 'هدف',
-        shot_on_target_saved: 'تصدي حارس',
-        own_goal: 'هدف عكسي',
-        penalty_goal: 'ضربة جزاء ناجحة',
-        penalty_missed: 'ضربة جزاء ضائعة',
-        yellow_card: 'بطاقة صفراء',
-        red_card: 'بطاقة حمراء',
-        var: 'VAR',
-        injury: 'إصابة'
-      };
-      eventsEl.innerHTML = events.map(ev => `
-        <div class="event-item">${labels[ev.event_type] || ev.event_type} — ${teamMap[ev.team_id] || 'فريق'} — الدقيقة ${ev.minute}${ev.notes ? ` — ${ev.notes}` : ''}</div>
-      `).join('');
-    }
-  } catch (error) {
-    console.error('Match details error:', error);
-    showBox(goalsEl, 'تعذر تحميل تفاصيل المباراة.', true);
-    showBox(eventsEl, 'تعذر تحميل تفاصيل المباراة.', true);
-  }
+  document.addEventListener('DOMContentLoaded', load);
 })();
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(function () { console.log('PWA ready'); })
-      .catch(function (err) { console.error('SW registration failed:', err); });
-  });
-}
-</script>
-</body>
-</html>
+</script></body></html>
